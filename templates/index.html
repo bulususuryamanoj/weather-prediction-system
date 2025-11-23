@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Prediction</title>
+</head>
+<body>
+
+    <h1>Weather Prediction</h1>
+
+    <table border="1" cellpadding="10">
+        <tr>
+
+            <!-- LEFT SIDE: INPUT FORM -->
+            <td valign="top">
+
+                <form action="/predict" method="post">
+
+                    <fieldset>
+                        <legend>Enter Weather Details</legend>
+
+                        <p>
+                            <label>Month (1–12):<br>
+                                <input type="number" name="month" required>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Precipitation (mm):<br>
+                                <input type="number" step="0.1" name="precipitation" required>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Maximum Temperature (°C):<br>
+                                <input type="number" step="0.1" name="temp_max" required>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Minimum Temperature (°C):<br>
+                                <input type="number" step="0.1" name="temp_min" required>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Wind Speed (km/h):<br>
+                                <input type="number" step="0.1" name="wind" required>
+                            </label>
+                        </p>
+
+                    </fieldset>
+
+                    <p>
+                        <input type="submit" value="Predict Weather">
+                    </p>
+
+                </form>
+
+            </td>
+
+            <!-- RIGHT SIDE: OUTPUT -->
+            <td valign="top">
+
+                {% if submit %}
+                {% if result %}
+
+                    <h2>Prediction Summary</h2>
+
+                    <fieldset>
+                        <legend>Input Details</legend>
+                        <p>
+                            <strong>Month:</strong> {{ month }}<br>
+                            <strong>Precipitation:</strong> {{ precipitation }} mm<br>
+                            <strong>Maximum Temperature:</strong> {{ temp_max }} °C<br>
+                            <strong>Minimum Temperature:</strong> {{ temp_min }} °C<br>
+                            <strong>Wind Speed:</strong> {{ wind }} km/h
+                        </p>
+                    </fieldset>
+
+                    <br>
+
+                    <fieldset>
+                        <legend>Predicted Weather</legend>
+                        <p><strong>{{ result }}</strong></p>
+                    </fieldset>
+
+                    <br>
+
+                    <p>
+                        <a href="/"><button type="button">Try Again</button></a>
+                    </p>
+
+                {% endif %}
+                {% endif %}
+
+            </td>
+
+        </tr>
+    </table>
+
+</body>
+</html>
